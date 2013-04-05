@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Morpheus</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<style>
+
+</style>
+</head>
+<body>
+<div id="projectPath">
+	<div class="dragzone">*.html파일을<br> 이곳에 놓으세요.</div>
+	<div class="projectpath">
+		<p>프로젝트가 설정되지 않았습니다.</p>
+		<input type="text" placeholder="예) file:///Users/uracle/project/res/">
+		<button id="btn">경로설정</button>
+	</div>
+</div>
+
+<div id="help">
+	<!--dl id="help">
+		<dt>도움말</dt>
+		<dd>- AppManifest.xml 파일을 놓으면 프로젝트로 설정됩니다.</dd>
+		<dd>- *.html파일을 놓으면 프로젝트 설정없이 모피어스 프레임웍을 확인할 수 있습니다.</dd>
+		<dd>- 우측상단에 마우스를 올리면 설정창이 나옵니다.</dd>
+	</dl-->
+	<dl id="notice">
+		<dt>앱을 실행할 수 없습니다.</dt>
+		<dd>1. 터미널을 실행합니다.</dd>
+		<dd>2. open -b com.google.chrome --args --disable-web-security</dd>
+	</dl>
+</div>
+
+<div id="charmbar">
+	<div id="anchor"></div>
+	<ul>
+		<li data-navi="menu0">재구동</li>
+		<li data-navi="menu1">데이터 확인</li>
+		<li data-navi="menu2">가상데이터</li>
+		<li data-navi="menu3">배포모드</li>
+		<li data-navi="menu4">설정</li>
+	</ul>
+	<div class="menuBack"></div>
+</div>
+
+<div id="systemInfo">
+	<time class="time"></time>
+	<date class="date"></date>
+	<date class="day"></date>
+</div>
+
+<div id="charm">
+	<h1></h1>
+	<div class="content"></div>
+</div>
+
+<div id="mpWrap">
+	<iframe id="ifrm" src=""></iframe>
+</div>
+
+<script src="js/mpui.js"></script>
+<script src="js/app.js"></script>
+<script src="js/Charmbar.js"></script>
+<script src="js/Launcher.js"></script>
+<script defer src="js/Indicator.js"></script>
+</body>
+</html>
