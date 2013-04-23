@@ -65,7 +65,7 @@ body {margin:0; overflow:hidden;}
 #component .pop {position:relative; background:black; color:white; padding:10px; margin:5px; border-radius:13px; width:200px; opacity:0}
 #mpWrap {position:absolute; top:0; left:0;}
 #mpWrap iframe {position:absolute; border:0}
-#mpWrap #viewHandler {position:relative; background:#eee; width:100%; height:20px; border-top-left-radius: 10px; border-top-right-radius: 10px; opacity:0}
+#mpWrap #viewHandler {position:relative; background:#eee; width:100%; height:20px; top:-20px; border-top-left-radius: 10px; border-top-right-radius: 10px; opacity:0}
 
 
 

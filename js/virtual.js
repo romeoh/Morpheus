@@ -90,7 +90,7 @@ Virtual.prototype = {
 				//console.log('b')
 			}
 		})
-		return status
+		return status;
 	},
 
 	// 앱 구동
@@ -106,28 +106,34 @@ Virtual.prototype = {
 		M('#help').animate({
 			bottom: '-240px'
 		})
-		this.createView(app.setGlobal('startPage'))
+		this.createView(app.setGlobal('startPage'));
 	},
 
-	createView: function(page){
+	// 화면생성
+	createView: function(url, param, action, animation, orientation){
 		var  appWidth, appHeight
 			,appPosX, appPosY
+			,stack
 
+		// 개발모드일경우
 		if (app.global['mode'] == 'DEV') {
-			appWidth = app.global['appWidth']
-			appHeight = app.global['appHeight']
-			appPosX = app.global['posX']
-			appPosY = app.global['posY']
+			appWidth = app.global['appWidth'];
+			appHeight = app.global['appHeight'];
+			appPosX = app.global['posX'];
+			appPosY = app.global['posY'];
+		
+		// 배포모드일 경우
 		} else {
-			appWidth = app.global['screenWidth']
-			appHeight = app.global['screenHeight']
-			appPosX = 0
-			appPosY = 0
+			appWidth = app.global['screenWidth'];
+			appHeight = app.global['screenHeight'];
+			appPosX = 0;
+			appPosY = 0;
 		}
 		
+		// wrapper 설정
 		M('#mpWrap')
 			.append('iframe', {
-				 'src': app.global['projectPath'] + 'www/html/' + page
+				 'src': app.global['projectPath'] + 'www/html/' + url
 				,'id': 'view' + this.stack
 			})
 			.css('width', appWidth + 'px')
@@ -135,11 +141,106 @@ Virtual.prototype = {
 			.css('top', appPosX + 'px')
 			.css('left', appPosY + 'px')
 
+		// 화면설정
 		M('#view'+this.stack)
 			.css('width', appWidth + 'px')
 			.css('height', appHeight + 'px')
-			
+			.css('top', this.getTopPosNewView(animation) + 'px')
+			.css('left', this.getLeftPosNewView(animation) + 'px')
+		
+		// 스택관리
+		stack = app.setGlobal('stack') || {}
+		stack[url] = {
+			 'name': url
+			,'param': param || ''
+			,'action': action || 'NEW_SCR'
+			,'animation': animation || 'DEFAULT'
+			,'orientation': orientation || 'DEFAULT'
+		}
+		app.setGlobal('stack', stack);
+		
+		// 스택카운트 관리
+		app.setGlobal('stackCount', this.stack);
+		this.initInterface(document.getElementById('view'+this.stack).contentWindow);
+		
+		this.stack++;
+	},
 
+
+	// 새로 생성하는 화면의 x, y 좌표값
+	getTopPosNewView: function(animation) {
+		switch (animation) {
+		case undefined: 
+		case 'NONE':
+		case 'DEFAULT': 
+		case 'SLIDE_LEFT': 
+		case 'SLIDE_RIGHT':
+		case 'ZOOM_IN':
+		case 'ZOOM_OUT':
+		case 'FADE':
+			return 0;
+			break;
+		
+		case 'SLIDE_TOP':
+		case 'MODAL_UP':
+			return app.global['appHeight'];
+		
+		case 'SLIDE_BOTTOM':
+		case 'MODAL_DOWN':
+			return -1 * app.global['appHeight'];
+			break;
+		}
+	},
+	getLeftPosNewView: function(animation) {
+		switch (animation) {
+		case undefined: 
+		case 'NONE': 
+		case 'ZOOM_IN': 
+		case 'ZOOM_OUT': 
+		case 'FADE':
+		case 'MODAL_UP':
+		case 'MODAL_DOWN':
+			return 0;
+			break;
+		
+		case 'DEFAULT': 
+		case 'SLIDE_LEFT': 
+		case 'MODAL_LEFT':
+			return app.global['appWidth'];
+			break;
+		
+		case 'SLIDE_RIGHT': 
+		case 'MODAL_RIGHT':
+			return -1 * app.global['appWidth'];
+			break;
+		}
+
+	},
+
+	move: function(url, param, actionType, animationType, orientation){
+		this.createView(url, param, actionType, animationType, orientation);
+		for (var i=0, length = app.setGlobal('stackCount'); i<length; i++) {
+			console.log(i)
+		}
+		console.log(app.setGlobal('stackCount'))
+		//M('#view'+this.stack)
+	},
+
+
+	/*
+	 * 화면에 WNInterface 함수를 override함
+	 */
+	initInterface: function(view) {
+		var that = this;
+		view.prompt = function(str){
+			if (str == '66QO7ZS87JA07IQK') {
+				// 화면이동
+				view.WNMoveToHtmlPage = function(url, param, actionType, animationType, orientation){
+					that.move(url, param, actionType, animationType, orientation);
+				}
+			}
+			return '';
+		}
 	}
 }
 
@@ -148,9 +249,18 @@ window.Virtual = Virtual;
 
 
 
-WNMoveToHtmlPage = function(url, param, actionType, animationType, orientation) {
-	virtual.move(url, param, actionType, animationType, orientation)
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
