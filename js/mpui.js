@@ -1005,12 +1005,20 @@ Mui.ajax = function(_option) {
 	xhr.open(type, url, async);
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == 4) {
-			eval (success) (xhr.responseText);
+			
+			eval (success) (xhr.response);
 			
 			// 접속 완료
 			if(complete){
 				eval(complete)();
 			}
+		}
+	}
+	xhr.onerror = function(param){
+		if (typeof error == 'function') {
+			eval(error)();
+		} else {
+			console.error('error');
 		}
 	}
 	xhr.send();

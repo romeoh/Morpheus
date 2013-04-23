@@ -6,6 +6,7 @@ var  swatchIntervalId
 	,gData = M.json(localStorage.getItem('kr.morpheus.global'))
 
 ,Charmbar = function(){
+	// 토스트 팝업 아이디 index
 	this.popId = 0;
 }
 
@@ -61,19 +62,19 @@ Charmbar.prototype = {
 			})
 		
 		// system info표시
-		if (app.global['info'] == 'PAGE') {
+		if (app.global('info') == 'PAGE') {
 
-		} else if (app.global['info'] == 'WATCH') {
+		} else if (app.global('info') == 'SWATCH') {
 			that.swatch();
 			swatchIntervalId = setInterval(function(){
 				that.swatch();
 			}, 1000)
 		}
 		M('.menuBack').on('click', function(){
-			if (app.global['info'] == 'PAGE') {
-				app.global['info', 'WATCH'];
-			} else if (app.global['info'] == 'WATCH') {
-				app.global['info', 'PAGE'];
+			if (app.global('info') == 'PAGE') {
+				app.global('info', 'SWATCH');
+			} else if (app.global('info') == 'SWATCH') {
+				app.global('info', 'PAGE');
 			}
 		})
 	},
@@ -382,5 +383,6 @@ Charmbar.prototype = {
 }
 
 window.Charmbar = Charmbar;
+window.gData = gData;
 })(window)
 

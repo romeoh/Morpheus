@@ -25,23 +25,23 @@ body {margin:0; overflow:hidden;}
 #anchor {width:15px; height:15px; position:absolute; top:0; right:0; z-index:20}
 
 #systemInfo {background:black; position:absolute; bottom:50px; left:50px; width:350px; height:130px; color:white; display:none; opacity:0; z-index:1}
-#systemInfo .time {font-size:60px; position:absolute; top:30px; left:50px}
-#systemInfo .date {font-size:30px; position:absolute; top:25px; left:220px}
-#systemInfo .day {font-size:30px; position:absolute; top:60px; left:220px}
+#systemInfo .time {font-size:60px; position:absolute; top:30px; right:180px; letter-spacing:-6px}
+#systemInfo .date {font-size:30px; position:absolute; top:25px; left:200px; letter-spacing:-2px}
+#systemInfo .day {font-size:30px; position:absolute; top:60px; left:200px; letter-spacing:-2px}
 
-#charm {width:330px; position:absolute; right:-330px; top:0; height:100%; color:#fff; overflow:scroll;}
-#charm h1 {background:url(images/ico_back.png) no-repeat; padding-left:50px; font-weight:normal; margin:25px 25px 0 25px; cursor:pointer;}
-#charm h2 {font-weight:normal; font-size:23px}
-#charm section {margin:0 25px; padding-top:30px}
-#charm section:last-child {border:none;}
-#charm section dl {margin:8px 0; display:table;}
-#charm section dt {font-size:16px; padding-left:10px}
-#charm section dd {font-size:14px; padding-left:15px}
-#charm section dd span:first-child {width:60px; display:block; float:left; overflow:hidden;}
-#charm section dd span:last-child {width:180px; display:block;; float:left}
-#charm section dd span:last-child input {width:100%}
-#charm section input,
-#charm section textarea {margin:3px 0; color:#fff;}
+#subCharm {width:330px; position:absolute; right:-330px; top:0; height:100%; color:#fff; overflow:scroll;}
+#subCharm h1 {background:url(images/ico_back.png) no-repeat; padding-left:50px; font-weight:normal; margin:25px 25px 0 25px; cursor:pointer;}
+#subCharm h2 {font-weight:normal; font-size:23px}
+#subCharm section {margin:0 25px; padding-top:30px}
+#subCharm section:last-child {border:none;}
+#subCharm section dl {margin:8px 0; display:table;}
+#subCharm section dt {font-size:16px; padding-left:10px}
+#subCharm section dd {font-size:14px; padding-left:15px}
+#subCharm section dd span:first-child {width:60px; display:block; float:left; overflow:hidden;}
+#subCharm section dd span:last-child {width:180px; display:block;; float:left}
+#subCharm section dd span:last-child input {width:100%}
+#subCharm section input,
+#subCharm section textarea {margin:3px 0; color:#fff;}
 
 .theme2 {background:#239bad}
 .theme2 h1 {border-bottom:1px solid #7bc3ce}
@@ -61,9 +61,11 @@ body {margin:0; overflow:hidden;}
 .theme5 section {border-bottom:1px solid #709a92}
 .theme5 input {border:1px solid #709a92; background:#709a92}
 
-#mpWrap {display:none;}
-
-
+#component {position:absolute; top:0; left:0;}
+#component .pop {position:relative; background:black; color:white; padding:10px; margin:5px; border-radius:13px; width:200px; opacity:0}
+#mpWrap {position:absolute; top:0; left:0;}
+#mpWrap iframe {position:absolute; border:0}
+#mpWrap #viewHandler {position:relative; background:#eee; width:100%; height:20px; border-top-left-radius: 10px; border-top-right-radius: 10px; opacity:0}
 
 
 

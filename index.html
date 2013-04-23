@@ -9,12 +9,13 @@
 </style>
 </head>
 <body>
+
 <div id="projectPath">
 	<div class="dragzone">*.html파일을<br> 이곳에 놓으세요.</div>
 	<div class="projectpath">
 		<p>프로젝트가 설정되지 않았습니다.</p>
-		<input type="text" placeholder="예) file:///Users/uracle/project/res/">
-		<button id="btn">경로설정</button>
+		<input type="text" id="pPath" placeholder="예) file:///Users/uracle/project/res/" value="file:///Users/brianpaek/Documents/workspace/MorpheusExtendSample/res/">
+		<button id="btnLaunch">앱구동</button>
 	</div>
 </div>
 
@@ -50,19 +51,22 @@
 	<date class="day"></date>
 </div>
 
-<div id="charm">
+<div id="subCharm">
 	<h1></h1>
 	<div class="content"></div>
 </div>
 
+<div id="component"></div>
 <div id="mpWrap">
-	<iframe id="ifrm" src=""></iframe>
+	<div id="viewHandler"></div>
+	<!--iframe src=""></iframe-->
 </div>
 
 <script src="js/mpui.js"></script>
-<script src="js/app.js"></script>
+<script src="js/App.js"></script>
 <script src="js/Charmbar.js"></script>
 <script src="js/Launcher.js"></script>
+<script src="js/Virtual.js"></script>
 <script defer src="js/Indicator.js"></script>
 </body>
 </html>

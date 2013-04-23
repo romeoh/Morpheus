@@ -2,12 +2,14 @@
 var Launcher = function(){
 	
 	this.init();
+
+	console.dir(Charmbar)
 }
 
 Launcher.prototype = {
 	// 초기화
 	init: function(){
-		console.log('show')
+		//console.log('show')
 		return;
 		var  that = this
 
